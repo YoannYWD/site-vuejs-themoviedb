@@ -1,8 +1,32 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from 'vue';
+import App from './App.vue';
+import VueRouter from 'vue-router';
+import routes from './routes';
 
-Vue.config.productionTip = false
+// VueRouter est un pluggin de Vue. On doit donc spécifier d'utiliser VueRouter dans Vue :
+Vue.use(VueRouter)
+
+
+// Création des routes :
+const router = new VueRouter({
+  routes: routes,
+  mode: 'history'
+})
+
+
+
+
+
+Vue.config.productionTip = false;
+
 
 new Vue({
-  render: h => h(App),
+  router,
+  render: h => h(App)
 }).$mount('#app')
+
+
+
+
+
+
