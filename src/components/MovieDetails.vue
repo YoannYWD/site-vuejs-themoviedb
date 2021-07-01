@@ -4,9 +4,11 @@
     <!-- DISPLAY MOVIE -->
     <div class="container">
         <div class="row">
-            <div class="col-10 offset-1 text-center p-5">
+            <button class="col-1 mt-5 btn btn-primary" onclick="history.back()">Retour</button>
+            <div class="col-10 text-center p-5">
                 <h2>{{movies.title}}</h2>
                 <h6>{{movies.genres[0].name}}</h6>
+                <h6>Durée: {{movies.runtime}}min</h6>
                 <img v-bind:src="'http://image.tmdb.org/t/p/w500/' + movies.poster_path" class="shadow p-2 mb-5 mt-2 bg-white rounded" alt="Affiche film" width="400px">
                 <p>{{movies.overview}}</p>
             </div>
@@ -44,7 +46,6 @@ export default {
     .then(res => {
       component.loading = false;
       component.movies = res.data;
-      console.log(component.movies.title);
       })
     } 
   },
@@ -54,9 +55,12 @@ export default {
   }
 }
 
+
 </script>
 
 
 <style scoped>
-
+.btn {
+    height: 40px;
+}
 </style>

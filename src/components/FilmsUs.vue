@@ -37,7 +37,7 @@ export default {
   methods: {
     getAllMovies(component) {
     axios
-    .get('https://api.themoviedb.org/3/discover/movie?api_key=5d4ce1d094143acd92ffb8e223c2abf8&sort_by=popularity.desc&include_adult=false&with_original_language=en')
+    .get('https://api.themoviedb.org/3/discover/movie?api_key=5d4ce1d094143acd92ffb8e223c2abf8&sort_by=popularity.desc&include_adult=false&with_original_language=en&language=fr-FR')
     .then(res => {
       component.loading = false;
       component.movies = res.data.results;
