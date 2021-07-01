@@ -15,7 +15,6 @@ const router = new VueRouter({
 })
 
 
-
 Vue.config.productionTip = false;
 
 // Création de la vue
@@ -23,10 +22,3 @@ new Vue({
   router,
   render: h => h(App)
 }).$mount('#app')
-
-
-
-
-
-
-

@@ -49,9 +49,7 @@ export default {
   created() {
     this.getAllMovies(this)
   }
-  
 }
-
 </script>
 
 

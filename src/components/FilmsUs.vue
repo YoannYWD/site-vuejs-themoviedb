@@ -16,6 +16,7 @@
   </div>
 </template>
 
+
 <script>
 // https://api.themoviedb.org/3/discover/movie?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=fr-FR&region=US
 import MoviesList from './MoviesList.vue'
@@ -48,9 +49,7 @@ export default {
   created() {
     this.getAllMovies(this)
   }
-  
 }
-
 </script>
 
 

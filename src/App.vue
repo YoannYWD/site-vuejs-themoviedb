@@ -3,6 +3,10 @@
 
     <Header />
 
+    <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" id="search" aria-label="Search">
+    </form>
+
     <div v-if="$route.path =='/'">
 
     <!-- TITLE -->
@@ -60,14 +64,29 @@ export default {
       component.loading = false;
       component.movies = res.data.results;
       })
-    } 
+    }   
   },
 
   created() {
     this.getAllMovies(this)
   }
-  
 }
+
+// let search = document.getElementById("search")
+
+// search.addEventListener("onkeyup", function() {
+//   console.log(search);
+// })
+
+
+
+
+
+
+
+
+
+
 </script>
 
 

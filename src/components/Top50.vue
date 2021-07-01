@@ -52,7 +52,6 @@ export default {
       component.movies = movies1.concat(movies2, movies3);
       }))
     }
-     
   },
 
   created() {

@@ -6,11 +6,6 @@ import Top50 from './components/Top50.vue';
 import MovieDetails from './components/MovieDetails.vue'
 
 export default [
-    // { 
-    //     path: '/', 
-    //     component: Home, 
-    //     name: 'Home'
-    // },
     { 
         path: '/Films2020', 
         component: Films2020, 
