@@ -1,20 +1,14 @@
 <template>
   <div id="app">
 
-    <!-- TITLE -->
-      <div class="container">
-        <div class="row">
-          <div class="col-12 text-center">
-                <h2>En détail</h2>
-          </div>
-        </div>
-      </div>
-      
     <!-- DISPLAY MOVIE -->
     <div class="container">
         <div class="row">
-            <div class="col">
-                <p>{{movies.title}}</p>
+            <div class="col-10 offset-1 text-center p-5">
+                <h2>{{movies.title}}</h2>
+                <h6>{{movies.genres[0].name}}</h6>
+                <img v-bind:src="'http://image.tmdb.org/t/p/w500/' + movies.poster_path" class="shadow p-2 mb-5 mt-2 bg-white rounded" alt="Affiche film" width="400px">
+                <p>{{movies.overview}}</p>
             </div>
         </div>
     </div>
@@ -24,7 +18,7 @@
 
 
 <script>
-// https://api.themoviedb.org/3/movie/' + req.params.id + '?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=fr-FR
+// https://api.themoviedb.org/3/movie/' + component.id +'?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=fr-FR
 
 import axios from 'axios';
 
@@ -37,19 +31,20 @@ export default {
 
   data() {
     return {
-    id: this.$route.params, 
+    id: this.$route.params.id, 
     movies: [],
     loading: true,
     }
   },
 
   methods: {
-    getAllMovies(component, id) {
+    getAllMovies(component) {
     axios
-    .get('https://api.themoviedb.org/3/movie/' + id + '?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=fr-FR')
+    .get('https://api.themoviedb.org/3/movie/' + component.id +'?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=fr-FR')
     .then(res => {
       component.loading = false;
       component.movies = res.data;
+      console.log(component.movies.title);
       })
     } 
   },
@@ -57,7 +52,6 @@ export default {
   created() {
     this.getAllMovies(this)
   }
-  
 }
 
 </script>

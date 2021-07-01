@@ -24,9 +24,7 @@ import axios from 'axios';
 export default {
   name: 'App',
   components: {
-
     MoviesList,
-
   },
 
   data() {
