@@ -14,10 +14,10 @@
                     <router-link to="/Films2020" class="nav-link">Films 2020</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link to="/Filmsfr" class="nav-link">Films Français</router-link>
+                    <router-link to="/FilmsFr" class="nav-link">Films Français</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link to="/Filmsus" class="nav-link">Films Americains</router-link>
+                    <router-link to="/FilmsUs" class="nav-link">Films Americains</router-link>
                 </li>
                 <li class="nav-item">
                     <router-link to="/Top50" class="nav-link">Top 50</router-link>

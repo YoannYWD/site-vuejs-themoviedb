@@ -5,7 +5,7 @@
       <div class="container">
         <div class="row">
           <div class="col-12 text-center">
-                <h1>TOP 20</h1>
+                <h2>TOP 50</h2>
           </div>
         </div>
       </div>
@@ -18,8 +18,14 @@
 
 <script>
 //https://api.themoviedb.org/3/movie/top_rated?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=fr-FR&page=1
+//https://api.themoviedb.org/3/movie/top_rated?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=fr-FR&page=2
+//https://api.themoviedb.org/3/movie/top_rated?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=fr-FR&page=3
 import MoviesList from './MoviesList.vue'
 import axios from 'axios';
+
+let reqOne = 'https://api.themoviedb.org/3/movie/top_rated?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=fr-FR&page=1';
+let reqTwo = 'https://api.themoviedb.org/3/movie/top_rated?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=fr-FR&page=2';
+let reqThree = 'https://api.themoviedb.org/3/movie/top_rated?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=fr-FR&page=3'
 
 export default {
   name: 'App',
@@ -30,26 +36,28 @@ export default {
   data() {
     return {
     movies: [],
-    loading: true,
+    loading: true
     }
   },
 
   methods: {
     getAllMovies(component) {
     axios
-    .get('https://api.themoviedb.org/3/movie/top_rated?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=en-US&page=1')
-    .then(res => {
+    .all([axios.get(reqOne), axios.get(reqTwo), axios.get(reqThree)])
+    .then(axios.spread((...res) => {
       component.loading = false;
-      component.movies = res.data.results;
-      console.log(component.movies);
-      })
-    } 
+      let movies1 = res[0].data.results;
+      let movies2 = res[1].data.results;
+      let movies3 = res[2].data.results.slice(10);
+      component.movies = movies1.concat(movies2, movies3);
+      }))
+    }
+     
   },
 
   created() {
     this.getAllMovies(this)
   }
-  
 }
 
 </script>

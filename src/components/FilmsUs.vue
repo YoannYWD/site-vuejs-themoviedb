@@ -5,7 +5,7 @@
       <div class="container">
         <div class="row">
           <div class="col-12 text-center">
-                <h1>Films Américains</h1>
+                <h2>Films Américains</h2>
           </div>
         </div>
       </div>
@@ -39,11 +39,10 @@ export default {
   methods: {
     getAllMovies(component) {
     axios
-    .get('https://api.themoviedb.org/3/discover/movie?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=fr-FR&region=US')
+    .get('https://api.themoviedb.org/3/discover/movie?api_key=5d4ce1d094143acd92ffb8e223c2abf8&sort_by=popularity.desc&include_adult=false&with_original_language=en')
     .then(res => {
       component.loading = false;
       component.movies = res.data.results;
-      console.log(component.movies);
       })
     } 
   },

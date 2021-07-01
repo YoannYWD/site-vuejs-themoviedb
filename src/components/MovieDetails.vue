@@ -5,43 +5,51 @@
       <div class="container">
         <div class="row">
           <div class="col-12 text-center">
-                <h2>Les films sorties en 2020</h2>
+                <h2>En détail</h2>
           </div>
         </div>
       </div>
       
-    <!-- DISPLAY MOVIES -->
-      <MoviesList :movies="movies" :loading="loading"/>
+    <!-- DISPLAY MOVIE -->
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <p>{{movies.title}}</p>
+            </div>
+        </div>
+    </div>
 
   </div>
 </template>
 
 
 <script>
-// https://api.themoviedb.org/3/discover/movie?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=fr-FR&year=2020
-import MoviesList from './MoviesList.vue'
+// https://api.themoviedb.org/3/movie/' + req.params.id + '?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=fr-FR
+
 import axios from 'axios';
+
 
 export default {
   name: 'App',
   components: {
-    MoviesList,
+
   },
 
   data() {
     return {
+    id: this.$route.params, 
     movies: [],
     loading: true,
     }
   },
 
   methods: {
-    getAllMovies(component) {
+    getAllMovies(component, id) {
     axios
-    .get('https://api.themoviedb.org/3/discover/movie?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=fr-FR&year=2020')
+    .get('https://api.themoviedb.org/3/movie/' + id + '?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=fr-FR')
     .then(res => {
       component.loading = false;
-      component.movies = res.data.results;
+      component.movies = res.data;
       })
     } 
   },
@@ -58,4 +66,3 @@ export default {
 <style scoped>
 
 </style>
-

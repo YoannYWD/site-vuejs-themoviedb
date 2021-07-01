@@ -9,7 +9,8 @@
       <div class="container">
         <div class="row">
           <div class="col-12 text-center">
-                <h1>Welcome</h1>
+                <h1>Bienvenue</h1>
+                <h2>Découvrez les dernières sorties et celles à venir !</h2>
           </div>
         </div>
       </div>
@@ -54,11 +55,10 @@ export default {
   methods: {
     getAllMovies(component) {
     axios
-    .get('https://api.themoviedb.org/3/discover/movie?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=fr-FR&sort_by=popularity.desc')
+    .get('https://api.themoviedb.org/3/movie/upcoming?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=fr-FR')
     .then(res => {
       component.loading = false;
       component.movies = res.data.results;
-      console.log(component.movies);
       })
     } 
   },

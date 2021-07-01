@@ -15,12 +15,6 @@ const router = new VueRouter({
 })
 
 
-// Import de l'API
-
-
-
-
-
 
 Vue.config.productionTip = false;
 
