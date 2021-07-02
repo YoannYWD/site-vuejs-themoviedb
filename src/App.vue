@@ -13,32 +13,32 @@
       </div>
     </div>
 
-      <!-- TITLE -->
-      <div class="container containerTitle">
-        <div class="row">
-          <div class="col-12 text-center">
-                <h1>Bienvenue</h1>
-                <h2>Découvrez les dernières sorties et celles à venir !</h2>
-          </div>
+    <!-- TITLE -->
+    <div class="container containerTitle">
+      <div class="row">
+        <div class="col-12 text-center">
+              <h1>Bienvenue</h1>
+              <h2>Découvrez les dernières sorties et celles à venir !</h2>
         </div>
       </div>
+    </div>
       
-      <!-- DISPLAY MOVIES -->
-        <!-- search -->
-      <div v-if="search">
-        <Search :moviesFound="moviesFound"/>
-      </div>
-        <!-- home movies -->
-      <div v-else>
-        <MoviesList :movies="movies" :loading="loading"/>
-      </div>
+    <!-- DISPLAY MOVIES -->
+      <!-- search -->
+    <div v-if="search">
+      <Search :moviesFound="moviesFound"/>
     </div>
-
+      <!-- home movies -->
     <div v-else>
-      <router-view :key="$route.fullPath"></router-view>
+      <MoviesList :movies="movies" :loading="loading"/>
     </div>
+  </div>
 
-    <Footer />
+  <div v-else>
+    <router-view :key="$route.fullPath"></router-view>
+  </div>
+
+  <Footer />
 
   </div>
 </template>
@@ -76,6 +76,9 @@ export default {
 
   methods: {
 
+
+
+
     //RECUPERER LES MOVIES DE LA PAGE D'ACCUEIL
     getAllMovies(component) {
       axios
@@ -86,6 +89,8 @@ export default {
         })
     },
 
+
+
     //FONCTION RECHERCHER
     searchMovies(component) {
       if (this.search.length > 0)
@@ -94,8 +99,8 @@ export default {
           .then(res => {
             component.moviesFound = res.data.results;
           })
+    },
 
-    }   
   },
 
   created() {

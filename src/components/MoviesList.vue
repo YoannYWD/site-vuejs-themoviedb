@@ -2,6 +2,17 @@
     <div v-if="loading"><p>Chargement en cours</p></div>
     <div v-else>
         <div class="container">
+            <div class="row text-center">
+                <div class="col-2 offset-3">
+                    <button class="btn btn-primary byTitle">Trier par titre</button>
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-primary byDate">Trier par date de sortie</button>
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-primary byNote">Trier par note</button>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-12 col-md-6 col-xl-3 p-5 text-center" v-for="movie in movies" v-bind:key="movie.id">
                     <router-link v-bind:to="'/MovieDetails/' + movie.id"><img v-bind:src="'http://image.tmdb.org/t/p/w300/' + movie.poster_path" class="card-img-top" alt="Affiche film"></router-link>
@@ -20,7 +31,7 @@ export default {
     name: 'MoviesList',
     props: [
         "movies",
-        "loading"
+        "loading",
     ]
 }
 </script>

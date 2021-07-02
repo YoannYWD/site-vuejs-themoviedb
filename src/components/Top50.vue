@@ -2,7 +2,7 @@
   <div id="app">
 
     <!-- TITLE -->
-      <div class="container">
+      <div class="container containerTitle">
         <div class="row">
           <div class="col-12 text-center">
                 <h2>TOP 50</h2>
@@ -63,5 +63,8 @@ export default {
 
 
 <style scoped>
+.containerTitle {
+  margin-top: 56px;
+}
 
 </style>
