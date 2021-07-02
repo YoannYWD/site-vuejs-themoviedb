@@ -13,12 +13,12 @@
 
 
 <script>
-export default {
-    name: 'Search',
-    props: [
-        "moviesFound"
-    ]
-}
+    export default {
+        name: 'Search',
+        props: [
+            "moviesFound"
+        ]
+    }
 </script>
 
 
