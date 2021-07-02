@@ -3,14 +3,18 @@
 
     <Header />
 
-    <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" id="search" aria-label="Search">
-    </form>
+    <div class="container">
+      <div class="row">
+        <form class="d-flex">
+          <input class="col-3 offset-9 form-control me-2 mt-2 search fixed-top" v-model="search" @keyup="searchMovies" type="search" placeholder="Chercher un film" aria-label="Search">
+        </form>
+      </div>
+    </div>
 
     <div v-if="$route.path =='/'">
 
-    <!-- TITLE -->
-      <div class="container">
+      <!-- TITLE -->
+      <div class="container title">
         <div class="row">
           <div class="col-12 text-center">
                 <h1>Bienvenue</h1>
@@ -19,8 +23,24 @@
         </div>
       </div>
       
-    <!-- DISPLAY MOVIES -->
-      <MoviesList :movies="movies" :loading="loading"/>
+      <!-- DISPLAY MOVIES -->
+        <!-- search -->
+      <div v-if="search">
+        <div class="container">   
+          <div class="row">
+            <div class="col-12 col-md-6 col-xl-3 p-5 text-center" v-for="movieFound in moviesFound" v-bind:key="movieFound.id">
+              <router-link v-bind:to="'/MovieDetails/' + movieFound.id"><img v-bind:src="'http://image.tmdb.org/t/p/w300/' + movieFound.poster_path" class="card-img-top" alt="Affiche film"></router-link>
+              <h3>{{movieFound.original_title}}</h3>
+              <h6>Sortie le : {{movieFound.release_date}}</h6>
+              <p>{{movieFound.vote_average}} / 10</p>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- home movies -->
+      <div v-else>
+        <MoviesList :movies="movies" :loading="loading"/>
+      </div>
     </div>
 
     <div v-else>
@@ -35,11 +55,14 @@
 
 <script>
 //https://api.themoviedb.org/3/discover/movie?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=fr-FR&sort_by=popularity.desc
+//https://api.themoviedb.org/3/search/movie?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=en-US&query=avengers&page=1&include_adult=false
 
 import Header from './components/Header.vue';
 import MoviesList from './components/MoviesList.vue'
 import Footer from './components/Footer.vue';
 import axios from 'axios';
+
+
 
 export default {
   name: 'App',
@@ -51,46 +74,56 @@ export default {
 
   data() {
     return {
+    search: "",
     movies: [],
+    moviesFound: [],
     loading: true,
     }
   },
 
   methods: {
+
+    //RECUPERER LES MOVIES DE LA PAGE D'ACCUEIL
     getAllMovies(component) {
-    axios
-    .get('https://api.themoviedb.org/3/movie/upcoming?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=fr-FR')
-    .then(res => {
-      component.loading = false;
-      component.movies = res.data.results;
-      })
+      axios
+        .get('https://api.themoviedb.org/3/movie/upcoming?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=fr-FR')
+        .then(res => {
+          component.loading = false;
+          component.movies = res.data.results;
+        })
+    },
+
+    //FONCTION RECHERCHER
+    searchMovies(component) {
+      if (this.search.length > 0)
+        axios
+          .get('https://api.themoviedb.org/3/search/movie?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=en-US&query=' + this.search + '&page=1&include_adult=false')
+          .then(res => {
+            component.moviesFound = res.data.results;
+          })
+
     }   
   },
 
   created() {
-    this.getAllMovies(this)
-  }
+    this.getAllMovies(this);
+
+  },
+
+  updated() {
+  this.searchMovies(this)
+  },
 }
-
-// let search = document.getElementById("search")
-
-// search.addEventListener("onkeyup", function() {
-//   console.log(search);
-// })
-
-
-
-
-
-
-
-
-
-
 </script>
 
 
 <style scoped>
+.title {
+  margin-top: 56px;
+}
 
+.search {
+  width: 300px;
+}
 
 </style>

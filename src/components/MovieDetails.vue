@@ -2,7 +2,7 @@
   <div id="app">
 
     <!-- DISPLAY MOVIE -->
-    <div class="container">
+    <div class="container containerMovieDetails">
         <div class="row">
             <button class="col-1 mt-5 btn btn-primary" onclick="history.back()">Retour</button>
             <div class="col-10 text-center p-5">
@@ -40,12 +40,12 @@ export default {
 
   methods: {
     getAllMovies(component) {
-    axios
-    .get('https://api.themoviedb.org/3/movie/' + component.id +'?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=fr-FR')
-    .then(res => {
-      component.loading = false;
-      component.movies = res.data;
-      })
+        axios
+            .get('https://api.themoviedb.org/3/movie/' + component.id +'?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=fr-FR')
+            .then(res => {
+                component.loading = false;
+                component.movies = res.data;
+            })
     } 
   },
 
@@ -57,6 +57,10 @@ export default {
 
 
 <style scoped>
+.containerMovieDetails {
+  margin-top: 56px;
+}
+
 .btn {
     height: 40px;
 }

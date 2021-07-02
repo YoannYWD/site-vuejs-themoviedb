@@ -42,15 +42,15 @@ export default {
 
   methods: {
     getAllMovies(component) {
-    axios
-    .all([axios.get(reqOne), axios.get(reqTwo), axios.get(reqThree)])
-    .then(axios.spread((...res) => {
-      component.loading = false;
-      let movies1 = res[0].data.results;
-      let movies2 = res[1].data.results;
-      let movies3 = res[2].data.results.slice(10);
-      component.movies = movies1.concat(movies2, movies3);
-      }))
+      axios
+        .all([axios.get(reqOne), axios.get(reqTwo), axios.get(reqThree)])
+        .then(axios.spread((...res) => {
+          component.loading = false;
+          let movies1 = res[0].data.results;
+          let movies2 = res[1].data.results;
+          let movies3 = res[2].data.results.slice(10);
+          component.movies = movies1.concat(movies2, movies3);
+        }))
     }
   },
 
