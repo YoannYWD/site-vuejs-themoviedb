@@ -3,6 +3,8 @@
 
     <Header />
 
+    <div v-if="$route.path =='/'">
+
     <div class="container">
       <div class="row">
         <form class="d-flex">
@@ -11,10 +13,8 @@
       </div>
     </div>
 
-    <div v-if="$route.path =='/'">
-
       <!-- TITLE -->
-      <div class="container title">
+      <div class="container containerTitle">
         <div class="row">
           <div class="col-12 text-center">
                 <h1>Bienvenue</h1>
@@ -111,7 +111,7 @@ export default {
 
 
 <style scoped>
-.title {
+.containerTitle {
   margin-top: 56px;
 }
 
