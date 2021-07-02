@@ -26,16 +26,7 @@
       <!-- DISPLAY MOVIES -->
         <!-- search -->
       <div v-if="search">
-        <div class="container">   
-          <div class="row">
-            <div class="col-12 col-md-6 col-xl-3 p-5 text-center" v-for="movieFound in moviesFound" v-bind:key="movieFound.id">
-              <router-link v-bind:to="'/MovieDetails/' + movieFound.id"><img v-bind:src="'http://image.tmdb.org/t/p/w300/' + movieFound.poster_path" class="card-img-top" alt="Affiche film"></router-link>
-              <h3>{{movieFound.original_title}}</h3>
-              <h6>Sortie le : {{movieFound.release_date}}</h6>
-              <p>{{movieFound.vote_average}} / 10</p>
-            </div>
-          </div>
-        </div>
+        <Search :moviesFound="moviesFound"/>
       </div>
         <!-- home movies -->
       <div v-else>
@@ -58,7 +49,8 @@
 //https://api.themoviedb.org/3/search/movie?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=en-US&query=avengers&page=1&include_adult=false
 
 import Header from './components/Header.vue';
-import MoviesList from './components/MoviesList.vue'
+import Search from './components/Search.vue';
+import MoviesList from './components/MoviesList.vue';
 import Footer from './components/Footer.vue';
 import axios from 'axios';
 
@@ -68,6 +60,7 @@ export default {
   name: 'App',
   components: {
     Header,
+    Search,
     MoviesList,
     Footer
   },
