@@ -10,7 +10,8 @@
 
             <!-- DISPLAY MOVIES -->
             <div class="row">
-                <div class="col-12 col-md-6 col-xl-3 p-5 text-center" v-for="movie in movies" v-bind:key="movie.id">
+                <div class="col-12 col-md-6 col-xl-3 p-5 text-center" v-for="(movie, index) in movies" :key="movie.id">
+                    <p class="index">{{index + 1}}</p>
                     <router-link v-bind:to="'/MovieDetails/' + movie.id"><img v-bind:src="'http://image.tmdb.org/t/p/w300/' + movie.poster_path" class="card-img-top" alt="Affiche film"></router-link>
                     <h3>{{movie.title}}</h3>
                     <h6>Sortie le : {{movie.release_date}}</h6>
@@ -41,5 +42,6 @@
 
 
 <style scoped>
+
 
 </style>
