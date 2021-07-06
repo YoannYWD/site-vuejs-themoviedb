@@ -1,12 +1,12 @@
 <template>
     <div class="row text-center">
-        <div class="col-2 offset-3">
+        <div class="col-4 col-lg-2 offset-lg-3">
             <button class="btn btn-primary" type="submit" @click="sortByTitle()">Trier par titre</button>
         </div>
-        <div class="col-2">
-            <button class="btn btn-primary" type="submit" @click="sortByDate()">Trier par date de sortie</button>
+        <div class="col-4 col-lg-2">
+            <button class="btn btn-primary" type="submit" @click="sortByDate()">Trier par date</button>
         </div>
-        <div class="col-2">
+        <div class="col-4 col-lg-2">
             <button class="btn btn-primary" type="submit" @click="sortByNote()">Trier par note</button>
         </div>
     </div>
@@ -88,6 +88,26 @@
     };
 </script>
 
-<style scoped>
+<style>
 
-</style>
+    button {
+        border-radius: 0!important;
+        font-family: 'Rajdhani', sans-serif;
+        background-color: #202020!important;
+        border: 1px solid #202020!important;
+    }
+
+    button:hover {
+        background-color: #303030!important;
+        border: 1px solid #FFFFFF!important;
+    }
+
+    button:focus {
+        border: 1px solid #ffdf2c!important;
+        color: #ffdf2c!important;
+        outline: none!important;
+        box-shadow: none!important;
+    }
+
+</style>>
+

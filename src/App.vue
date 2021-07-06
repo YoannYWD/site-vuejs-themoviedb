@@ -6,11 +6,13 @@
     <div v-if="$route.path =='/'">
 
     <!-- SEARCH INPUT -->
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
-        <form class="d-flex">
-          <input class="col-3 offset-9 form-control me-2 mt-2 search fixed-top" v-model="search" @keyup="searchMovies" type="search" placeholder="Chercher un film" aria-label="Search">
-        </form>
+        <div class="col-5 offset-7 col-sm-4 offset-sm-8 col-xl-2 offset-xl-10">
+          <form class="d-flex search">
+            <i class="fas fa-search"></i><input class="form-control me-2 mt-2" v-model="search" @keyup="searchMovies" type="search" placeholder="Chercher un film" aria-label="Search">
+          </form>
+        </div>
       </div>
     </div>
 
@@ -18,7 +20,7 @@
     <div class="container containerTitle">
       <div class="row">
         <div class="col-12 text-center">
-              <h1>Bienvenue</h1>
+              <h1 class="color">Movie Movie Movie</h1>
               <h2>Découvrez les dernières sorties et celles à venir !</h2>
         </div>
       </div>
@@ -54,8 +56,6 @@
   import MoviesList from './components/MoviesList.vue';
   import Footer from './components/Footer.vue';
   import axios from 'axios';
-
-
 
   export default {
     name: 'App',
@@ -111,12 +111,57 @@
 
 <style scoped>
 
-  .containerTitle {
-    margin-top: 56px;
+  .search {
+    margin-top: 76px!important;
   }
 
-  .search {
-    width: 300px;
+  #app {
+    background-color: #303030;
+  }
+
+  .fas {
+    color: #ffdf2c;
+    position:relative;
+    top: 20px;
+    left: -10px;
+  }
+
+  input {
+    font-family: 'Open Sans Condensed', sans-serif;
+    border-radius: 0;
+  }
+
+  h1 {
+    color: transparent;
+    font-size: 3em;
+    font-family: 'Zen Tokyo Zoo', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    font-weight: 200;
+    margin: 25px;
+    background-image: linear-gradient(to left,#FFFFFF,#00ff2a,#ff0000, #ffdf2c, #0059ff, #FFFFFF);
+    -webkit-background-clip: text;
+    animation: animate 5s linear infinite;
+    -webkit-background-size: 500%;
+    background-size: 500%;
+  }
+  @keyframes animate {
+    0%{
+      background-position: 0 100%;
+    }
+    50%{
+      background-position: 100% 0;
+    }
+    100%{
+      background-position: 0 100%;
+    }
+  }
+
+  h2 {
+    color: #FFFFFF;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 200;
+    margin: 20px;
   }
 
 </style>

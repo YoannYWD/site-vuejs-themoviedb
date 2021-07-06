@@ -5,7 +5,7 @@
       <div class="container containerTitle">
         <div class="row">
           <div class="col-12 text-center">
-                <h2>Films Américains</h2>
+                <h2>Tous les films du pays de l'oncle Sam</h2>
           </div>
         </div>
       </div>
@@ -56,7 +56,16 @@
 <style scoped>
 
   .containerTitle {
-    margin-top: 56px;
+    margin-top: 50px;
+  }
+
+  h2 {
+    color: #FFFFFF;
+    font-family: 'Rajdhani', sans-serif;
+    text-transform: uppercase;
+    font-weight: 200;
+    font-size: 2.5em;
+    margin: 40px;
   }
 
 </style>

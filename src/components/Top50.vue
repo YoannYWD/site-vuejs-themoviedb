@@ -48,7 +48,7 @@
             component.loading = false;
             let movies1 = res[0].data.results;
             let movies2 = res[1].data.results;
-            let movies3 = res[2].data.results.slice(10);
+            let movies3 = res[2].data.results.splice(50, 10);
             component.movies = movies1.concat(movies2, movies3);
           }))
       }
@@ -58,14 +58,22 @@
       this.getAllMovies(this)
     }
   }
-
 </script>
 
 
 <style scoped>
 
   .containerTitle {
-    margin-top: 56px;
+    margin-top: 50px;
+  }
+
+  h2 {
+    color: #FFFFFF;
+    font-family: 'Rajdhani', sans-serif;
+    text-transform: uppercase;
+    font-weight: 200;
+    font-size: 2.5em;
+    margin: 40px;
   }
 
 </style>
