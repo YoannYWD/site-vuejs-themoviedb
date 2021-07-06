@@ -71,4 +71,10 @@
     margin: 40px;
   }
 
+  @media screen and (max-width: 575px) {
+    .containerTitle h2{
+        margin-top: 50px!important;
+    }
+  } 
+
 </style>

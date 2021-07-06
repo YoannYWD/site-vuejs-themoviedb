@@ -1,3 +1,5 @@
+// FICHIER QUI INSTANCIE L'APPLICATION
+
 import Vue from 'vue';
 import App from './App.vue';
 import VueRouter from 'vue-router';
@@ -17,7 +19,7 @@ const router = new VueRouter({
 
 Vue.config.productionTip = false;
 
-// Création de la vue
+// Création et génère l'application dans #app
 new Vue({
   router,
   render: h => h(App)

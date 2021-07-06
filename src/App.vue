@@ -8,7 +8,7 @@
     <!-- SEARCH INPUT -->
     <div class="container-fluid">
       <div class="row">
-        <div class="col-5 offset-7 col-sm-4 offset-sm-8 col-xl-2 offset-xl-10">
+        <div class="col-7 offset-5 col-sm-4 offset-sm-8 col-xl-2 offset-xl-10">
           <form class="d-flex search">
             <i class="fas fa-search"></i><input class="form-control me-2 mt-2" v-model="search" @keyup="searchMovies" type="search" placeholder="Chercher un film" aria-label="Search">
           </form>
@@ -168,6 +168,17 @@
     font-family: 'Rajdhani', sans-serif;
     font-weight: 200;
     margin: 20px;
+  }
+
+
+  @media screen and (max-width: 575px) {
+    .search {
+      margin-top: 100px!important;
+    }
+
+    h1 {
+      font-size: 2.7em!important;
+    }
   }
 
 </style>

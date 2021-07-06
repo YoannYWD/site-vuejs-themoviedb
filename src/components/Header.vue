@@ -74,4 +74,10 @@ export default {
         width:100%;
     }
 
+
+    @media screen and (max-width: 575px) {
+        .navbar .navbar-brand {
+            font-size: 1em;
+        }
+    }
 </style>

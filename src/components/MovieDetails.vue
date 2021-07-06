@@ -4,8 +4,8 @@
     <!-- DISPLAY MOVIE -->
     <div class="container containerMovieDetails">
         <div class="row">
-            <button class="col-1 mt-5 btn btn-primary" onclick="history.back()"><i class="fas fa-arrow-left"></i></button>
-            <div class="col-10 p-5">
+            <button class="col-3 offset-1 col-lg-2 col-xl-1 col-xxl-1 mt-5 btn btn-primary btnBack" onclick="history.back()"><i class="fas fa-arrow-left"></i></button>
+            <div class="col-12 col-xxl-10 p-5">
 
               <!-- Title -->
               <div class="row text-center">
@@ -16,25 +16,28 @@
 
               <div class="row movieDetails">
                 <!-- Image -->
-                <div class="col-4">
-                  <img v-bind:src="'http://image.tmdb.org/t/p/w300/' + movies.poster_path" class="p-1 mb-5 mt-2 bg-white posterImg" alt="Affiche film">
+                <div class="col-12 col-lg-5 col-xl-4 text-center">
+                  <img v-bind:src="'http://image.tmdb.org/t/p/w300/' + movies.poster_path" class="p-1 mb-5 mt-2 bg-white img-fluid posterImg" alt="Affiche film">
                 </div>
-                <div class="col-8">
-                  <!-- details -->
+                <div class="col-12 col-lg-7 col-xl-8">
+
+                  <!-- ligne 4 détails -->
                   <div class="row">
-                    <div class="col-3">
+                    <div class="col-6 col-sm-3">
                       <p class="runtime"><i class="fas fa-history"></i>{{movies.runtime}}min</p>
                     </div>
-                    <div class="col-3 text-center">
+                    <div class="col-6 col-sm-3 text-center">
                       <p class="voteAverage">{{movies.vote_average}}/10 <span>({{movies.vote_count}} votes)</span></p>
                     </div>
-                    <div class="col-3 text-center">
+                    <div class="col-6 col-sm-3 text-sm-center">
                       <p class="realeaseDate">Sortie le: {{movies.release_date | moment}}</p>
                     </div>
-                    <div class="col-3">
+                    <div class="col-6 col-sm-3">
                       <p class="homepage"><a v-bind:href="movies.homepage" target="_blank">Page officielle</a></p>
                     </div>
                   </div>
+
+                  <!-- genre -->
                   <div class="row">
                     <div class="col-12 genre">
                       <div v-for="genre in movies.genres" v-bind:key="genre.id">
@@ -43,18 +46,17 @@
                     </div>
                   </div>
 
+                  <!-- citation -->
                   <div class="row">
-                    <div class="col-6">
+                    <div class="col-12 col-md-5 col-xl-6">
                       <div v-if="movies.tagline" class="blockQuote">
                       <p><i class="fas fa-quote-left"></i></p>
                       <blockquote>{{movies.tagline}}</blockquote>
-
-
                       </div>
-
-
                     </div>
-                    <div class="col-6"> 
+
+                    <!-- bande-annonce -->
+                    <div class="col-md-7 col-xl-6 announced"> 
                       <div v-if="video.results">
                         <p class="detailTitle">Bande-Annonce</p>
                         <iframe width="318" height="200" v-bind:src="'https://www.youtube.com/embed/' + video.results[0].key" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -65,6 +67,8 @@
                       </div>
                     </div>
                   </div>
+
+                  <!-- synopsis -->
                   <div class="row">
                     <div class="col-12">
                       <p class="detailTitle">Synopsis</p>
@@ -74,38 +78,30 @@
                 </div>
               </div>
 
-
+              <!-- casting -->
               <div class="row">
                 <p class="detailTitle">Casting</p>
-                <div class="col-12 creditList text-center">
-                  <div v-for="credit in credits" :key="credit.id" class="creditItem">
+                <div v-for="credit in credits" :key="credit.id" class="col-3 col-sm-2 col-md-1 creditItem text-center">
                     <img v-bind:src="'http://image.tmdb.org/t/p/w500/' + credit.profile_path" class="" alt="Photo acteur" height="100px">
                     <p>{{credit.name}}</p>
-                  </div>
                 </div>
               </div>
 
-
-
+              <!-- production -->
               <div class="row">
-                <div class="col-12">
-                  <p class="detailTitle">Production</p>
-                    <div class="productionList">
-                      <div v-for="company in movies.production_companies" v-bind:key="company.id" >
-                        <div v-if="company.logo_path">
-                          <img v-bind:src="'http://image.tmdb.org/t/p/w300/' + company.logo_path" class="ml-2" alt="Logo production" height="30px">
-                        </div> 
-                        <div v-else>
-                          <p>{{company.name}}</p> 
-                        </div>
-                      </div>
-                    </div> 
-                </div>   
+                <p class="detailTitle">Production</p>
+                <div v-for="company in movies.production_companies" v-bind:key="company.id" class="col-12 col-sm-6 col-lg-4 col-xxl-3 p-2" >
+                  <div v-if="company.logo_path">
+                    <img v-bind:src="'http://image.tmdb.org/t/p/w300/' + company.logo_path" class="ml-2" alt="Logo production" height="30px">
+                  </div> 
+                  <div v-else>
+                    <p>{{company.name}}</p> 
+                  </div>
+                </div>
               </div>
             </div>
         </div>
     </div>
-
   </div>
 </template>
 
@@ -142,7 +138,6 @@ export default {
       axios
         .get('https://api.themoviedb.org/3/movie/' + component.id +'?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=fr-FR')
         .then(res => {
-            component.loading = false;
             component.movies = res.data;
 
         })
@@ -156,7 +151,6 @@ export default {
       axios
         .get('https://api.themoviedb.org/3/movie/' + component.id + '/videos?api_key=5d4ce1d094143acd92ffb8e223c2abf8&language=fr-FR')
         .then((res) => {
-          component.loading = false;
           component.video = res.data;
         })
         .catch((err) => {
@@ -271,17 +265,15 @@ export default {
     display: flex;
   }
   .creditItem {
-    margin: 0 10px
+    margin: 0 10px;
+    box-sizing: border-box;
   }
   .creditItem img {
     border: 1px solid #FFFFFF;
   }
-
   
   .blockQuote {
-    position: absolute;
     margin-top: 50px;
-    width: 15vw;
   }
 
   .blockQuote .fas {
@@ -296,8 +288,62 @@ export default {
     font-size: 2em;
     top: -70px;
     left: 30px;
+  }
+
+
+  @media screen and (max-width: 575px) {
+    .btnBack {
+      margin-top: 80px!important;
+    }
+
+    .genre {
+      margin-top: 25px;
+    }
+
+    .blockQuote {
+      margin-top: 30px;
+      width: 60vw;
+    }
+
+    .announced iframe {
+      width: 70vw;
+    }
 
   }
+
+  @media screen and (min-width: 576px) and (max-width: 767px) {
+    .blockQuote {
+      margin-top: 30px;
+    }
+     
+     .genre {
+      margin-top: 25px;
+    }
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+     .genre {
+      margin-top: 15px;
+    }
+  }
+
+  @media screen and (min-width: 992px) and (max-width: 1199px) {
+    .blockQuote {
+      margin-top: 20px;
+      width: 15vw;
+    }
+    .blockQuote blockquote {
+      left: 20px;
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    .blockQuote {
+      margin-top: 20px;
+      width: 15vw;
+    }
+  }
+    
 
 
 </style>

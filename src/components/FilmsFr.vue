@@ -18,13 +18,13 @@
 
         <!-- Sorting Buttons -->
         <div class="row text-center">
-          <div class="col-2 offset-3">
+          <div class="col-4 col-lg-2 offset-lg-3">
               <button class="btn btn-primary" type="submit" @click="sortByTitle()">Trier par titre</button>
           </div>
-          <div class="col-2">
-              <button class="btn btn-primary" type="submit" @click="sortByDate()">Trier par date de sortie</button>
+          <div class="col-4 col-lg-2">
+              <button class="btn btn-primary" type="submit" @click="sortByDate()">Trier par date</button>
           </div>
-          <div class="col-2">
+          <div class="col-4 col-lg-2">
               <button class="btn btn-primary" type="submit" @click="sortByNote()">Trier par note</button>
           </div>
         </div>
@@ -255,6 +255,12 @@
     .card:hover .overview {
         opacity: 100;
         transition: 0.5s;  
+    }
+
+    @media screen and (max-width: 575px) {
+        .containerTitle h2{
+            margin-top: 50px!important;
+        }
     }
 
 </style>
