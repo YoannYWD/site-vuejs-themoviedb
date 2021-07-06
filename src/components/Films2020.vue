@@ -43,6 +43,9 @@
             component.loading = false;
             component.movies = res.data.results;
           })
+          .catch((err) => {
+            alert('FAIL', err)
+          });
       }, 
     },
 

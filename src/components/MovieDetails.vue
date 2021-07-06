@@ -76,6 +76,9 @@ export default {
             component.loading = false;
             component.movies = res.data;
         })
+        .catch((err) => {
+          alert('FAIL', err)
+        });
     } 
   },
 

@@ -51,6 +51,9 @@
             let movies3 = res[2].data.results.splice(50, 10);
             component.movies = movies1.concat(movies2, movies3);
           }))
+          .catch((err) => {
+            alert('FAIL', err)
+          });
       }
     },
 
