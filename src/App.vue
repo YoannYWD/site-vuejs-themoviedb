@@ -20,8 +20,8 @@
     <div class="container containerTitle">
       <div class="row">
         <div class="col-12 text-center">
-              <h1 class="color">Movie Movie Movie</h1>
-              <h2>Découvrez les dernières sorties et celles à venir !</h2>
+          <h1 class="color">Movie Movie Movie</h1>
+          <h2>Découvrez les dernières sorties et celles à venir !</h2>
         </div>
       </div>
     </div>
@@ -97,6 +97,9 @@
             .then(res => {
               component.moviesFound = res.data.results;
             })
+            .catch((err) => {
+              alert('FAIL', err)
+            });
       },
     },
 

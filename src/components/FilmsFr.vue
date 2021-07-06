@@ -47,7 +47,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-9">
-                                    <p>Sortie le : {{movie.release_date}}</p>
+                                    <p>Sortie le : {{movie.release_date | moment}}</p>
                                 </div>
                                 <div class="col-3 text-center">
                                     <p class="note">{{movie.vote_average}}<i class="fas fa-star"></i></p>
@@ -55,7 +55,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 overview text-center">
-                                    <h6>{{movie.title}}</h6>
+                                    <h6>{{movie.original_title}}</h6>
                                     <p>{{movie.overview.substr(0, [200])}}...</p>
                                 </div>
                             </div>
@@ -73,6 +73,7 @@
 <script>
   // https://api.themoviedb.org/3/discover/movie?api_key=5d4ce1d094143acd92ffb8e223c2abf8&sort_by=popularity.desc&include_adult=false&with_original_language=fr
   import axios from 'axios';
+  import moment from 'moment';
 
 
   export default {
@@ -87,6 +88,13 @@
               noteSort: false
       }
     },
+
+    filters: {
+        moment: function (date) {
+            return moment(date).format('DD/MM/YYYY');
+        }
+    },
+
     methods: {
       // GET FRENCH MOVIES
       getAllMovies(component) {

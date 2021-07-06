@@ -26,7 +26,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-9">
-                                    <p>Sortie le : {{movie.release_date}}</p>
+                                    <p>Sortie le : {{movie.release_date | moment}}</p>
                                 </div>
                                 <div class="col-3 text-center">
                                     <p class="note">{{movie.vote_average}}<i class="fas fa-star"></i></p>
@@ -49,6 +49,7 @@
 
 <script>
     import Buttons from './Buttons.vue';
+    import moment from 'moment';
 
     export default {
         name: 'MoviesList',
@@ -60,7 +61,13 @@
         props: [
             "movies",
             "loading",
-        ]
+        ],
+
+        filters: {
+            moment: function (date) {
+                return moment(date).format('DD/MM/YYYY');
+            }
+        },
     }
 </script>
 
@@ -129,7 +136,7 @@
         max-height: 60%;
     }
     .card:hover .overview {
-        opacity: 100;
+        opacity: 1;
         transition: 0.5s;  
     }
 
